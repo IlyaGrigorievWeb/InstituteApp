@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Database.Database;
 using Database.Database.Entities;
+using Database.Database.Enums;
 using InstituteApp.Services.Institutes.Abstractions;
 using InstituteApp.Services.Institutes.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +19,36 @@ namespace InstituteApp.Services.Institutes
             _dbContext = dbContext;
         }
 
-        public async Task<List<Institute>> GetInstitutes()
+        public async Task<List<InstituteModel>> GetInstitutes(string directionCode, List<Subject> subjects)
         {
-            return await _dbContext.Institutes.ToListAsync();
+            var institutes = await _dbContext.Institutes.ToListAsync();
+
+            var specialties = await _dbContext.Specialties.ToListAsync();
+
+            var institutesModels = institutes.Select(institute =>
+            {
+                return new InstituteModel()
+                {
+                    Id = institute.Id,
+                    Address = institute.Address,
+                    Director = institute.Director,
+                    Name = institute.Name,
+                    Phone = institute.Phone,
+                    Type = institute.Type,
+                    Url = institute.Url,
+                    Specialties = specialties.Where( specialtyFromDb => institute.SpecialtiesGuids.Contains(specialtyFromDb.Id)).ToList()
+                };
+            });
+            if ((directionCode != null) && (directionCode != ""))
+            {
+                institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.DirectionCode == directionCode));
+            }
+            if (subjects != null)
+            {
+                institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.AdmissionSubjects.Any(a => subjects.Contains(a))));
+            }
+
+            return institutesModels.ToList();
         }
         public async Task<Institute> GetInstitute(Guid instituteGuid)
         {

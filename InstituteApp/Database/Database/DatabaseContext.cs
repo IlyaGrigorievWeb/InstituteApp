@@ -12,17 +12,17 @@ namespace Database.Database
         public DatabaseContext(DbContextOptions options) : base(options) { }
 
         /// <summary>
-        /// Пользователи
+        /// Учебные заведения
         /// </summary>
         public virtual DbSet<Institute> Institutes { get; set; }
 
         /// <summary>
-        /// Роботы
+        /// Специальности
         /// </summary>
         public virtual DbSet<Specialty> Specialties { get; set; }
 
         /// <summary>
-        /// Места
+        /// Направления
         /// </summary>
         public virtual DbSet<Direction> Directions { get; set; }
     }
