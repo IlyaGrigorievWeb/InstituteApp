@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Database.Database;
 using Database.Database.Entities;
+using Database.Database.Enums;
 using InstituteApp.Services.Specialties.Abstractions;
 using InstituteApp.Services.Specialties.Models;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +42,7 @@ namespace InstituteApp.Services.Specialties
                 Id = Guid.NewGuid(),
                 Name = specialtyInfo.Name,
                 DirectionCode = specialtyInfo.DirectionCode,
-                AdmissionSubjects = specialtyInfo.AdmissionSubjects,
+                AdmissionSubjects = specialtyInfo.AdmissionSubjects.Select(e => (int)e).ToList()
             };
             await _dbContext.Specialties.AddAsync(specialty);
             await _dbContext.SaveChangesAsync();
@@ -52,7 +53,7 @@ namespace InstituteApp.Services.Specialties
             var specialty = await GetSpecialty(specialtyGuid);
             specialty.Name = specialtyInfo.Name;
             specialty.DirectionCode = specialtyInfo.DirectionCode;
-            specialty.AdmissionSubjects = specialtyInfo.AdmissionSubjects;
+            specialty.AdmissionSubjects = specialtyInfo.AdmissionSubjects.Select(e => (int)e).ToList();
             await _dbContext.SaveChangesAsync();
         }
         public async Task DeleteSpecialty(Guid specialtyGuid)

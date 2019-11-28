@@ -11,6 +11,6 @@ namespace Database.Database.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string DirectionCode { get; set; }
-        public List<Subject> AdmissionSubjects { get; set; }
+        public List<int> AdmissionSubjects { get; set; }
     }
 }

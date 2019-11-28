@@ -45,7 +45,7 @@ namespace InstituteApp.Services.Institutes
             }
             if (subjects != null)
             {
-                institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.AdmissionSubjects.Any(a => subjects.Contains(a))));
+                institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.AdmissionSubjects.Any(a => subjects.Contains(((Subject)a)))));
             }
 
             return institutesModels.ToList();
