@@ -1,0 +1,21 @@
+.institute__main-container {
+  padding: 30px;
+  display: flex;
+}
+
+.institute__directions {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 5fr 4fr 2fr;
+}
+
+.institute-direction__column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.institute-direction__column:nth-child(even) {
+  background-color: rgba(233, 233, 233, 0.3);
+}

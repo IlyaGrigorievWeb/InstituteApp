@@ -1,0 +1,51 @@
+.institutes-list__main-container {
+  display: flex;
+  padding: 30px;
+}
+.institutes-list__main-search {
+  outline: none;
+  border: none;
+  background: #ebeef1;
+  border-radius: 4px;
+  width: 90%;
+  height: 50px;
+  font-size: 30px;
+}
+
+.institutes-list__main-list {
+  flex: 3;
+}
+
+.institutes-list__main-university {
+  width: 90%;
+  background: rgba(248, 248, 248, 0.6);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.institutes-list__main-university:hover {
+  cursor: pointer;
+}
+
+.institutes-list__main-subjects {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  background: #f8f8f8;
+  padding: 0 0 10px 0;
+}
+
+.institutes-list__main-subjects-header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  background: #ebeef1;
+  border-radius: 4px;
+  height: 50px;
+  font-size: 30px;
+}
