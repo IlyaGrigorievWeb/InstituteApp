@@ -34,7 +34,7 @@ namespace InstituteApp.Controllers
         [HttpGet]
         public async Task<List<InstituteModel>> GetInstitutes([FromQuery]string directionCode, [FromQuery] List<Subject> subjects)
         {
-            return await _institutesService.GetInstitutes(directionCode, null);
+            return await _institutesService.GetInstitutes(directionCode, subjects);
         }
 
         /// <summary>
