@@ -1,0 +1,47 @@
+version: '3.4'
+
+networks:
+  instituteapp-dev:
+    driver: bridge 
+
+services:
+  instituteapp:
+    image: instituteapp:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: ./InstituteApp/
+      dockerfile: Dockerfile
+    ports:
+      - 5555:80
+    networks:
+      - instituteapp-dev
+    volumes:
+      - /root/Images:/app/wwwroot/Images
+  
+  instituteapp_frontend:
+    image: instituteapp_frontend:latest
+    build:
+      context: ./Frontend/institute
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+    networks:
+      - instituteapp-dev
+  
+  postgres_image:
+    image: postgres:latest
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "InstituteApp"
+    networks:
+      - instituteapp-dev
+volumes:
+  db_volume:
+         
+    
+      

@@ -1,0 +1,22 @@
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  min-height: 100%;
+  background: rgba(233, 233, 233, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar__image {
+  height: 180px;
+}
+
+.sidebar__link {
+  color: #00c5ff;
+  font-size: 32px;
+  text-decoration: none;
+  margin-top: 40px;
+}
