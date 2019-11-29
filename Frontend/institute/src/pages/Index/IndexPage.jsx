@@ -3,8 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import Sidebar from '../../components/Sidebar';
 import Start from '../Start';
-import Universities from '../Universities';
-import Colleges from '../Colleges';
 import InstitutesList from '../InstitutesList';
 import Institute from '../Institute/Institute';
 
