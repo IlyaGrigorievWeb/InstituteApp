@@ -1,3 +1,4 @@
+import qs from 'qs';
 import { debounce } from 'lodash-es';
 import axios from 'axios';
 import React from 'react';
@@ -31,6 +32,9 @@ const InstitutesList = ({ headerTitle, type }) => {
         params: {
           directionCode: info.search,
           subjects: info.subjects
+        },
+        paramsSerializer: params => {
+          return qs.stringify(params);
         }
       });
       setList(data);
