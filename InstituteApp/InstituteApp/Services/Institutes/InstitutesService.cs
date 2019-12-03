@@ -39,11 +39,11 @@ namespace InstituteApp.Services.Institutes
                     Specialties = specialties.Where( specialtyFromDb => institute.SpecialtiesGuids.Contains(specialtyFromDb.Id)).ToList()
                 };
             });
-            if ((directionCode != null) || (directionCode != ""))
+            if (directionCode != null)
             {
-                institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.DirectionCode == directionCode));
+                institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.DirectionCode.Contains(directionCode)));
             }
-            if (subjects != null)
+            if (subjects.Count != 0)
             {
                 institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.AdmissionSubjects.Any(a => subjects.Contains(((Subject)a)))));
             }
