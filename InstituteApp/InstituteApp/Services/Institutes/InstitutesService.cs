@@ -88,7 +88,7 @@ namespace InstituteApp.Services.Institutes
         }
         public async Task UpdateInstitute(InstituteInfo instituteInfo, Guid instituteGuid)
         {
-            var institute = await GetInstitute(instituteGuid);
+            var institute = await _dbContext.Institutes.FirstOrDefaultAsync(e => e.Id == instituteGuid);
             institute.Name = instituteInfo.Name;
             institute.SpecialtiesGuids = instituteInfo.SpecialtiesGuids;
             institute.Address = instituteInfo.Address;
@@ -100,7 +100,7 @@ namespace InstituteApp.Services.Institutes
         }
         public async Task DeleteInstitute(Guid instituteGuid)
         {
-            var institute = await GetInstitute(instituteGuid);
+            var institute = await _dbContext.Institutes.FirstOrDefaultAsync(e => e.Id == instituteGuid);
             _dbContext.Institutes.Remove(institute);
             await _dbContext.SaveChangesAsync();
         }
