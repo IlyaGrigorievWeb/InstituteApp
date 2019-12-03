@@ -32,7 +32,7 @@ namespace InstituteApp.Controllers
         /// <param name="subjects">Russian,Math, Biology, Chemistry,Social,Physics,Language</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<List<InstituteModel>> GetInstitutes([FromQuery]string directionCode, [FromQuery] List<Subject> subjects)
+        public async Task<List<InstituteModel>> GetInstitutes([FromQuery]string directionCode, [FromQuery] List<Subject> subjects, InstituteType type)
         {
             return await _institutesService.GetInstitutes(directionCode, subjects);
         }
