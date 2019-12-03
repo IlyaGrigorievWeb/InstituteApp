@@ -85,19 +85,23 @@ const InstitutesList = ({ headerTitle, type }) => {
               </div>
             ))}
           </div>
-          <div className="institutes-list__main-subjects">
-            <div className="institutes-list__main-subjects-header">Я сдаю</div>
-            {SUBJECTS.map(subject => (
-              <div key={subject.id}>
-                {subject.label}
-                <input
-                  onChange={() => handleCheckboxChange(subject.id)}
-                  checked={state.subjects.includes(subject.id)}
-                  type="checkbox"
-                />
+          {type === 'university' && (
+            <div className="institutes-list__main-subjects">
+              <div className="institutes-list__main-subjects-header">
+                Я сдаю
               </div>
-            ))}
-          </div>
+              {SUBJECTS.map(subject => (
+                <div key={subject.id}>
+                  {subject.label}
+                  <input
+                    onChange={() => handleCheckboxChange(subject.id)}
+                    checked={state.subjects.includes(subject.id)}
+                    type="checkbox"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </Main>
     </>

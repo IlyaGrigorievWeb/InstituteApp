@@ -6,7 +6,7 @@ import './style.css';
 import Header from '../../components/Header';
 import Main from '../../components/Main';
 import { INSTITUTES } from '../../utils/api';
-import { SUBJECTS } from '../../utils/constants';
+import { SUBJECTS, TYPES } from '../../utils/constants';
 
 const Institute = () => {
   const { instituteId } = useParams();
@@ -67,13 +67,18 @@ const Institute = () => {
                 <div className="institute-direction__column">
                   {specialty.name}
                 </div>
-                <div className="institute-direction__column">
-                  {(specialty.admissionSubjects || []).map(subjectId => (
-                    <div>
-                      {SUBJECTS.find(subject => subject.id === subjectId).label}
-                    </div>
-                  ))}
-                </div>
+                {institute.type === TYPES.university.id && (
+                  <div className="institute-direction__column">
+                    {(specialty.admissionSubjects || []).map(subjectId => (
+                      <div>
+                        {
+                          SUBJECTS.find(subject => subject.id === subjectId)
+                            .label
+                        }
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <div className="institute-direction__column">очная</div>
               </React.Fragment>
             ))}

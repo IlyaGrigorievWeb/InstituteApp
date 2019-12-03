@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './style.css';
 import Robot from './Robot.png';
@@ -18,10 +19,14 @@ const Start = () => {
           <img src={Robot} alt="robot" />
           <div className="main__variants">
             <div className="main__variant">
-              <div className="main__variant-title">11-классник</div>
+              <Link to="/universities" className="main__variant-title">
+                11-классник
+              </Link>
             </div>
             <div className="main__variant">
-              <div className="main__variant-title">9-классник</div>
+              <Link to="/colleges" className="main__variant-title">
+                9-классник
+              </Link>
             </div>
             <div className="main__variant">
               <div className="main__variant-content">

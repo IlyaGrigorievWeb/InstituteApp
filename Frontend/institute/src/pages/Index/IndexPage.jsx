@@ -14,12 +14,20 @@ const Index = () => {
         <Route exact path="/" component={Start} />
         <Route
           path="/universities"
-          render={() => <InstitutesList headerTitle="ВУЗы Калужской области" />}
+          render={() => (
+            <InstitutesList
+              headerTitle="ВУЗы Калужской области"
+              type="university"
+            />
+          )}
         />
         <Route
           path="/colleges"
           render={() => (
-            <InstitutesList headerTitle="ССУЗы Калужской области" />
+            <InstitutesList
+              headerTitle="ССУЗы Калужской области"
+              type="college"
+            />
           )}
         />
         <Route path="/institutes/:instituteId" component={Institute} />
