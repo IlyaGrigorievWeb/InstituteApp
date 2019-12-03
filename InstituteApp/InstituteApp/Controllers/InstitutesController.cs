@@ -44,7 +44,7 @@ namespace InstituteApp.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{instituteGuid}")]
-        public async Task<Institute> GetInstitute(Guid instituteGuid)
+        public async Task<InstituteModel> GetInstitute(Guid instituteGuid)
         {
             return await _institutesService.GetInstitute(instituteGuid);
         }

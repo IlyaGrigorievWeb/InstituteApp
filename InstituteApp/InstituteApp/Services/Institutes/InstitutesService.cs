@@ -39,7 +39,7 @@ namespace InstituteApp.Services.Institutes
                     Specialties = specialties.Where( specialtyFromDb => institute.SpecialtiesGuids.Contains(specialtyFromDb.Id)).ToList()
                 };
             });
-            if ((directionCode != null) && (directionCode != ""))
+            if ((directionCode != null) || (directionCode != ""))
             {
                 institutesModels = institutesModels.Where(institute => institute.Specialties.Any(e => e.DirectionCode == directionCode));
             }
@@ -50,9 +50,23 @@ namespace InstituteApp.Services.Institutes
 
             return institutesModels.ToList();
         }
-        public async Task<Institute> GetInstitute(Guid instituteGuid)
+        public async Task<InstituteModel> GetInstitute(Guid instituteGuid)
         {
-            return await _dbContext.Institutes.FirstOrDefaultAsync(e => e.Id == instituteGuid);
+            var specialties = await _dbContext.Specialties.ToListAsync();
+            var institute = await _dbContext.Institutes.FirstOrDefaultAsync(e => e.Id == instituteGuid);
+            var instituteModel = new InstituteModel()
+            {
+                Id = institute.Id,
+                Address = institute.Address,
+                Director = institute.Director,
+                Name = institute.Name,
+                Phone = institute.Phone,
+                Type = institute.Type,
+                Url = institute.Url,
+                Specialties = specialties.Where(specialtyFromDb => institute.SpecialtiesGuids.Contains(specialtyFromDb.Id)).ToList()
+
+            };
+            return instituteModel;
         }
 
         public async Task<Guid> CreateInstitute(InstituteInfo instituteInfo)

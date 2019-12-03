@@ -11,7 +11,7 @@ namespace InstituteApp.Services.Institutes.Abstractions
     public interface IInstitutesService
     {
         Task<List<InstituteModel>> GetInstitutes(string directionCode, List<Subject> subjects);
-        Task<Institute> GetInstitute(Guid instituteGuid);
+        Task<InstituteModel> GetInstitute(Guid instituteGuid);
         Task<Guid> CreateInstitute(InstituteInfo instituteInfo);
         Task UpdateInstitute(InstituteInfo instituteInfo, Guid instituteGuid);
         Task DeleteInstitute(Guid instituteGuid);
